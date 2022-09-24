@@ -7,7 +7,7 @@ import re
 
 DECIMAL_PATTERN = r'(\d+(?:\.\d*)?)'
 
-
+ 
 assignments ={}
 
 sg.theme('DarkAmber')
