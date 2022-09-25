@@ -56,7 +56,7 @@ layout_tabgroup = [[sg.Tab('Summative/Formative', sf_layout)], [sg.Tab('Tab 2', 
 layout_frame = [[sg.TabGroup(layout_tabgroup)]]
 layout = [
     [sg.Frame('Grade Simulator',layout_frame)],
-    [sg.Button('Quit'), sg.Button('Export'), sg.Button('Import:'), sg.InputText(key='import_data')]
+    [sg.Button('Quit'), sg.Button('Clear'), sg.Button('Export'), sg.Button('Import:'), sg.InputText(key='import_data')]
     ]
 
 def update_assignments_windows():
@@ -80,7 +80,7 @@ def update_all_windows():
     update_assignments_windows()
     update_scales_windows()
 
-window = sg.Window('Window Title', layout)
+window = sg.Window('Juice', layout)
 
 class InputError(Exception):
     pass
@@ -128,8 +128,11 @@ while True:
                 'max_grade' : float(m.group(2)),
                 'category' : 'formative' if values['assignment_category'] =='f' else 'summative'
             }
-
-            update_assignments_windows()                
+        if event == 'Clear':
+            summative_scale =0
+            formative_scale =0
+            assignments ={}
+        update_assignments_windows()                
 
     except InputError as e:
         sg.popup(e)
